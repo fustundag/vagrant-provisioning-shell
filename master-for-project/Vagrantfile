@@ -1,0 +1,22 @@
+$web_server_ip = "192.168.56.101"
+$vagrant_module_path = "/Users/fatihustundag/Projects/vagrant/shell-modules"
+
+Vagrant.configure("2") do |config|
+    config.vbguest.auto_update = false
+
+    config.vm.box = "centos64"
+
+	config.ssh.private_key_path = "/Users/fatihustundag/.ssh/vagrant_rsa"
+	
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+
+    config.vm.network "private_network", ip: $web_server_ip
+
+    config.vm.synced_folder "../", "/vagrant/", :mount_options => ["dmode=777", "fmode=777"]
+    config.vm.synced_folder $vagrant_module_path, "/vagrant/vagrant/modules"
+
+    config.vm.provision :shell, :path => "bootstrap.sh"
+end
