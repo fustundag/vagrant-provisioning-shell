@@ -16,6 +16,7 @@ chkconfig mysqld on
 service mysqld start
 
 mysql -u root -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY '' WITH GRANT OPTION;"
+mysql_upgrade -u root
 
 if [[ ! -z "$MYSQL_SQL_FILE" ]]
 then
