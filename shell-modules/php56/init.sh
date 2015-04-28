@@ -18,16 +18,16 @@ rm -f /etc/php.d/php-development.ini
 
 if [[ -z "$PHPFPM_CONF_FILE" ]]
 then
-    ln -s "${SHELL_SCRIPT_MODULE_PATH}/php55/files/www.conf" /etc/php-fpm.d/www.conf
+    cp "${SHELL_SCRIPT_MODULE_PATH}/php56/files/www.conf" /etc/php-fpm.d/www.conf
 else
-    ln -s "${PHPFPM_CONF_FILE}" /etc/php-fpm.d/www.conf
+    cp "${PHPFPM_CONF_FILE}" /etc/php-fpm.d/www.conf
 fi
 
 if [[ -z "$PHP_INI_FILE" ]]
 then
-    ln -s "${SHELL_SCRIPT_MODULE_PATH}/php55/files/php-development.ini" /etc/php.d/php-development.ini
+    cp "${SHELL_SCRIPT_MODULE_PATH}/php55/files/php-development.ini" /etc/php.d/php-development.ini
 else
-    ln -s "${PHP_INI_FILE}" /etc/php.d/php-development.ini
+    cp "${PHP_INI_FILE}" /etc/php.d/php-development.ini
 fi
 
 rm -f /etc/php.d/xdebug-remote.ini
@@ -35,9 +35,9 @@ if [[ ! -z "$XDEBUG_REMOTE_DEBUGGING" ]]
 then
     if [[ -z "$XDEBUG_REMOTE_INI_FILE" ]]
     then
-        ln -s "${SHELL_SCRIPT_MODULE_PATH}/php55/files/xdebug-remote.ini" /etc/php.d/xdebug-remote.ini
+        cp "${SHELL_SCRIPT_MODULE_PATH}/php55/files/xdebug-remote.ini" /etc/php.d/xdebug-remote.ini
     else
-        ln -s "${XDEBUG_REMOTE_INI_FILE}" /etc/php.d/xdebug-remote.ini
+        cp "${XDEBUG_REMOTE_INI_FILE}" /etc/php.d/xdebug-remote.ini
     fi
 fi
 
@@ -46,9 +46,9 @@ if [[ ! -z "$XDEBUG_PROFILER" ]]
 then
     if [[ -z "$XDEBUG_PROFILER_INI_FILE" ]]
     then
-        ln -s "${SHELL_SCRIPT_MODULE_PATH}/php55/files/xdebug-profiler.ini" /etc/php.d/xdebug-profiler.ini
+        cp "${SHELL_SCRIPT_MODULE_PATH}/php55/files/xdebug-profiler.ini" /etc/php.d/xdebug-profiler.ini
     else
-        ln -s "${XDEBUG_PROFILER_INI_FILE}" /etc/php.d/xdebug-profiler.ini
+        cp "${XDEBUG_PROFILER_INI_FILE}" /etc/php.d/xdebug-profiler.ini
     fi
 fi
 
